@@ -8,14 +8,29 @@ namespace TradeProject.Concrete
 {
     public class PlayerManager : IPlayer
     {
+        IUserValidationService _userValidationService;
+
+        public PlayerManager(IUserValidationService userValidationService)
+        {
+            _userValidationService = userValidationService;
+        }
+
         public void Delete(Player player)
         {
+
             Console.WriteLine("Player deleted : " + player.FirstName);
         }
 
         public void Save(Player player)
         {
-            Console.WriteLine("Player saved : " + player.FirstName);
+            if (_userValidationService.Validate(player) == true)
+            {
+                Console.WriteLine("Player saved : " + player.FirstName);
+            }
+            else
+            {
+                Console.WriteLine("Doğrulama Başarısız.");
+            }
         }
 
         public void Update(Player player)

@@ -10,11 +10,14 @@ namespace TradeProject
         {
             Player player = new Player();
             player.FirstName = "Furkan";
+            player.LastName = "Karain";
+            player.BirthYear = 1998;
+            player.IdentityNumber = 12345;
             Player player1 = new Player { FirstName = "Ömer" };
 
-            PlayerManager playerManager = new PlayerManager();
+            PlayerManager playerManager = new PlayerManager(new UserValidationManager());
             //playerManager.Delete(player1);
-            //playerManager.Save(player);
+            playerManager.Save(player);
             // Buraya kadar oyuncuyu interfaceler yardımıyla crud işlemini yaptık.
             Games games = new Games();
             games.GameName = "Assasin's Creed";
@@ -27,7 +30,7 @@ namespace TradeProject
             campaign.CampaignName = "Fırsat Günü";
 
             gameManager.Sell(games1, player1, campaign);
-            
+
         }
     }
 }
